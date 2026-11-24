@@ -1,0 +1,542 @@
+{
+  "companies": [
+    {
+      "id": "oracle",
+      "name": "Oracle Hospitality",
+      "official_name": "Oracle Hospitality (Oracle business unit)",
+      "website": "https://www.oracle.com/hospitality/",
+      "description": "Oracle's hospitality business provides hotel operations, distribution, merchandising and payments software.",
+      "segments": [
+        "Independent hotels",
+        "Hotel chains"
+      ],
+      "source_ids": [
+        "oracle-portfolio",
+        "oracle-hotels"
+      ]
+    },
+    {
+      "id": "mews",
+      "name": "Mews",
+      "official_name": "Mews Systems B.V. (parent company)",
+      "website": "https://www.mews.com/en",
+      "description": "Mews provides a cloud hospitality operating system spanning property operations, embedded payments, guest workflows and revenue management.",
+      "segments": [
+        "Independent hotels",
+        "Hotel groups and chains",
+        "Extended-stay operators",
+        "Hostels"
+      ],
+      "source_ids": [
+        "mews-platform",
+        "mews-entity"
+      ]
+    },
+    {
+      "id": "amadeus",
+      "name": "Amadeus",
+      "official_name": "Amadeus IT Group, S.A. (hospitality business)",
+      "website": "https://www.amadeus-hospitality.com/",
+      "description": "Amadeus Hospitality provides reservation, guest management, distribution and demand intelligence tools for hotels.",
+      "segments": [
+        "Independent hotels",
+        "Hotel groups and brands"
+      ],
+      "source_ids": [
+        "amadeus-portfolio",
+        "amadeus-entity",
+        "amadeus-booking"
+      ]
+    },
+    {
+      "id": "siteminder",
+      "name": "SiteMinder",
+      "official_name": "SiteMinder Limited",
+      "website": "https://www.siteminder.com/",
+      "description": "SiteMinder provides a hotel commerce platform for distribution, direct bookings and revenue workflows.",
+      "segments": [
+        "Independent hotels",
+        "Hotel chains",
+        "Small accommodation providers via Little Hotelier"
+      ],
+      "source_ids": [
+        "siteminder-platform",
+        "siteminder-channels",
+        "siteminder-commerce"
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "opera-pms",
+      "company_id": "oracle",
+      "name": "OPERA Cloud Property Management",
+      "category": "Property management",
+      "description": "Cloud property management for hotel operations.",
+      "source_ids": [
+        "oracle-portfolio",
+        "oracle-hotels"
+      ]
+    },
+    {
+      "id": "opera-distribution",
+      "company_id": "oracle",
+      "name": "OPERA Cloud Distribution",
+      "category": "Hotel distribution",
+      "description": "Distribution offering within the OPERA Cloud hotel portfolio.",
+      "source_ids": [
+        "oracle-portfolio"
+      ]
+    },
+    {
+      "id": "opera-merchandising",
+      "company_id": "oracle",
+      "name": "OPERA Cloud Guest Engagement and Merchandising",
+      "category": "Guest experience and retailing",
+      "description": "Guest engagement and merchandising offering in the OPERA Cloud portfolio.",
+      "source_ids": [
+        "oracle-portfolio"
+      ]
+    },
+    {
+      "id": "oracle-payments",
+      "company_id": "oracle",
+      "name": "Oracle Payments for hospitality",
+      "category": "Payments",
+      "description": "Payments offering listed in Oracle's hospitality portfolio.",
+      "source_ids": [
+        "oracle-portfolio"
+      ]
+    },
+    {
+      "id": "mews-pms",
+      "company_id": "mews",
+      "name": "Mews Operations",
+      "category": "Property management",
+      "description": "Core property management system covering reservations, billing and front desk operations.",
+      "source_ids": [
+        "mews-operations"
+      ]
+    },
+    {
+      "id": "mews-pay",
+      "company_id": "mews",
+      "name": "Mews Payments",
+      "category": "Payments",
+      "description": "Payment processing embedded in Mews property management and point of sale.",
+      "source_ids": [
+        "mews-payments"
+      ]
+    },
+    {
+      "id": "mews-journey",
+      "company_id": "mews",
+      "name": "Mews Guest Journey",
+      "category": "Guest experience and retailing",
+      "description": "Guest-facing tools include a booking engine, online check-in, upsells and guest messaging.",
+      "source_ids": [
+        "mews-guest"
+      ]
+    },
+    {
+      "id": "mews-rms",
+      "company_id": "mews",
+      "name": "Mews Revenue Management",
+      "category": "Revenue management",
+      "description": "Revenue management offering covering dynamic pricing and demand forecasting.",
+      "source_ids": [
+        "mews-platform"
+      ]
+    },
+    {
+      "id": "ihotelier-booking",
+      "company_id": "amadeus",
+      "name": "iHotelier Booking Engine",
+      "category": "Direct booking",
+      "description": "Booking engine for reservations and offers on hotel websites.",
+      "source_ids": [
+        "amadeus-booking"
+      ]
+    },
+    {
+      "id": "ihotelier-crs",
+      "company_id": "amadeus",
+      "name": "iHotelier Central Reservations System",
+      "category": "Reservations and distribution",
+      "description": "Central reservations system for managing rates, availability and distribution.",
+      "source_ids": [
+        "amadeus-booking",
+        "amadeus-portfolio"
+      ]
+    },
+    {
+      "id": "demand360",
+      "company_id": "amadeus",
+      "name": "Demand360",
+      "category": "Demand intelligence",
+      "description": "Hotel demand intelligence using forward-looking rate and occupancy data.",
+      "source_ids": [
+        "amadeus-demand"
+      ]
+    },
+    {
+      "id": "amadeus-gms",
+      "company_id": "amadeus",
+      "name": "Amadeus Guest Management Solutions",
+      "category": "Guest management",
+      "description": "Guest management solution documented as part of the B2 Hotels booking and engagement scope.",
+      "source_ids": [
+        "amadeus-b2",
+        "amadeus-portfolio"
+      ]
+    },
+    {
+      "id": "sm-manager",
+      "company_id": "siteminder",
+      "name": "SiteMinder Channel Manager",
+      "category": "Hotel distribution",
+      "description": "Synchronizes room availability across connected booking channels.",
+      "source_ids": [
+        "siteminder-channels"
+      ]
+    },
+    {
+      "id": "sm-channels-plus",
+      "company_id": "siteminder",
+      "name": "Channels Plus",
+      "category": "Hotel distribution",
+      "description": "Channel marketplace for connecting hotels to participating distribution channels.",
+      "source_ids": [
+        "siteminder-platform",
+        "siteminder-products"
+      ]
+    },
+    {
+      "id": "sm-booking",
+      "company_id": "siteminder",
+      "name": "Group Booking Engine",
+      "category": "Direct booking",
+      "description": "Lets guests search direct rates and availability across a hotel portfolio.",
+      "source_ids": [
+        "siteminder-products"
+      ]
+    },
+    {
+      "id": "sm-revenue",
+      "company_id": "siteminder",
+      "name": "Dynamic Revenue Plus",
+      "category": "Revenue management",
+      "description": "Includes daily pricing recommendations developed with IDeaS.",
+      "source_ids": [
+        "siteminder-products"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "mews-marketplace-doc",
+      "title": "Mews Marketplace · capability and rollout status",
+      "url": "https://help.mews.com/s/article/Mews-Marketplace",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T22:55:23+00:00"
+    },
+    {
+      "id": "oracle-portfolio",
+      "title": "Oracle hospitality solutions",
+      "url": "https://www.oracle.com/hospitality/",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "oracle-hotels",
+      "title": "Oracle Hospitality hotel documentation",
+      "url": "https://docs.oracle.com/en/industries/hospitality/hotels.html",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "mews-platform",
+      "title": "Mews hospitality platform",
+      "url": "https://www.mews.com/en",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "mews-entity",
+      "title": "Mews contracting entity FAQ",
+      "url": "https://help.mews.com/s/article/Mews-invoicing-change-FAQ",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "mews-operations",
+      "title": "Mews Operations documentation",
+      "url": "https://help.mews.com/s/article/Mews-Operations",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "mews-payments",
+      "title": "Mews Payments product page",
+      "url": "https://www.mews.com/en-gb/products/payments",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "mews-guest",
+      "title": "Mews Guest Journey documentation",
+      "url": "https://help.mews.com/s/article/Mews-Guest-Journey",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "amadeus-portfolio",
+      "title": "Amadeus Hospitality solutions",
+      "url": "https://www.amadeus-hospitality.com/",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "amadeus-entity",
+      "title": "Amadeus corporate governance",
+      "url": "https://amadeus.com/en/corporate-governance/board-of-directors",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "amadeus-booking",
+      "title": "iHotelier Booking Engine product page",
+      "url": "https://www.amadeus-hospitality.com/solutions/reservations-and-guest-management/ihotelier-booking-engine/",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "amadeus-demand",
+      "title": "Demand360 product page",
+      "url": "https://www.amadeus-hospitality.com/solutions/business-intelligence/demand360/",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "siteminder-platform",
+      "title": "SiteMinder hotel commerce platform",
+      "url": "https://www.siteminder.com/",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "siteminder-channels",
+      "title": "SiteMinder Channel Manager product page",
+      "url": "https://www.siteminder.com/channel-manager/",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "siteminder-products",
+      "title": "SiteMinder Product Hub",
+      "url": "https://www.siteminder.com/product-hub/",
+      "status": "verified",
+      "published_on": null,
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "oracle-assistant",
+      "title": "Oracle announcement on OPERA Cloud AI capabilities",
+      "url": "https://www.oracle.com/news/announcement/new-ai-capabilities-in-oracle-opera-cloud-supercharge-hotel-operations-2026-06-16/",
+      "status": "verified",
+      "published_on": "2026-06-16",
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "mews-finance",
+      "title": "Mews announcement on recurring payments, multicurrency and receivables",
+      "url": "https://www.mews.com/en/press/mews-recurring-payments-multicurrency-accounts-receivable",
+      "status": "verified",
+      "published_on": "2026-07-15",
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "mews-winter",
+      "title": "Mews winter product update",
+      "url": "https://www.mews.com/en/press/mews-product-update",
+      "status": "verified",
+      "published_on": "2025-12-11",
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "amadeus-b2",
+      "title": "Amadeus announcement on the B2 Hotels agreement",
+      "url": "https://www.amadeus-hospitality.com/insight/b2-hotels-partners-with-amadeus-to-transform-the-guest-booking-experience-in-asia-pacific/",
+      "status": "verified",
+      "published_on": "2025-07-09",
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "siteminder-commerce",
+      "title": "SiteMinder Dynamic Commerce Engine announcement",
+      "url": "https://www.siteminder.com/news/dynamic-commerce-engine/",
+      "status": "verified",
+      "published_on": "2026-09-22",
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    },
+    {
+      "id": "mews-siteminder",
+      "title": "SiteMinder announcement on the Mews distribution partnership",
+      "url": "https://www.siteminder.com/news/mews-siteminder-pioneer-native-distribution/",
+      "status": "verified",
+      "published_on": "2026-05-27",
+      "reviewed_at": "2026-11-23T21:16:25+00:00"
+    }
+  ],
+  "developments": [
+    {
+      "id": "oracle-assistant",
+      "source_id": "oracle-assistant",
+      "title": "Oracle announces OPERA Cloud Assistant",
+      "company_ids": [
+        "oracle"
+      ],
+      "theme_ids": [
+        "ai",
+        "guest",
+        "revenue"
+      ],
+      "summary": "Oracle announced AI features inside OPERA Cloud, including automated room assignments, rate-description generation and in-workflow help.",
+      "interpretation": "Putting assistance inside the property management system could make it easier to use during routine front-desk and configuration work.",
+      "implication": "Independent workflow tools may need to differentiate on specialist capabilities or integration across multiple systems.",
+      "questions": [
+        "Which features are available by property, region and subscription?",
+        "What override controls and audit records are available for room assignment?"
+      ],
+      "limitations": "Oracle describes intended benefits. The release does not establish realized productivity gains or hotel financial impact."
+    },
+    {
+      "id": "mews-finance",
+      "source_id": "mews-finance",
+      "title": "Mews adds finance workflows and expands Multicurrency",
+      "company_ids": [
+        "mews"
+      ],
+      "theme_ids": [
+        "payments",
+        "ai"
+      ],
+      "summary": "Mews announced scheduled recurring collections, expansion of online Multicurrency to the US and Canada, and Accounts Receivable for properties in EUR currency markets.",
+      "interpretation": "Automating collection and reconciliation inside the operating system could make payments a purchasing consideration for hotel finance teams.",
+      "implication": "Recurring collection could extend the product's relevance to extended stays and memberships. Commercial attractiveness depends on eligibility, fees and adoption.",
+      "questions": [
+        "Which payment methods, currencies and markets are supported today?",
+        "How do fees and payment failure handling compare with a separate provider?"
+      ],
+      "limitations": "The release describes regional availability at publication. Vendor-reported results do not establish typical customer outcomes."
+    },
+    {
+      "id": "mews-winter",
+      "source_id": "mews-winter",
+      "title": "Mews updates billing, add-ons and upsell fulfillment",
+      "company_ids": [
+        "mews"
+      ],
+      "theme_ids": [
+        "ai",
+        "payments",
+        "retailing",
+        "guest"
+      ],
+      "summary": "Mews reported automatic payment matching, routing of in-stay add-ons to the correct payer, and automatic task creation when a guest purchases an upsell.",
+      "interpretation": "Connecting the purchase to a staff task could make upsell fulfillment easier to track across teams.",
+      "implication": "Hotel retailing tools could compete on fulfillment and reconciliation as well as offer targeting.",
+      "questions": [
+        "Can staff track completion, exceptions and refunds for each add-on?",
+        "How do results differ across hotel types and staff workflows?"
+      ],
+      "limitations": "The winter update is a vendor release. It does not establish adoption rates, realized margin effects or current availability for each configuration."
+    },
+    {
+      "id": "amadeus-b2",
+      "source_id": "amadeus-b2",
+      "title": "B2 Hotels announces plans to adopt Amadeus iHotelier",
+      "company_ids": [
+        "amadeus"
+      ],
+      "theme_ids": [
+        "distribution",
+        "guest",
+        "partnerships"
+      ],
+      "summary": "Amadeus published B2 Hotels' plan to adopt iHotelier, with central reservations, website and guest management solutions in the announced scope.",
+      "interpretation": "A regional chain buying connected reservation and guest tools could indicate demand for a suite that spans booking and guest engagement.",
+      "implication": "A bundled offer could make it easier to sell adjacent tools, depending on migration effort and customer preference for existing systems.",
+      "questions": [
+        "Which properties and workflows are in scope for the rollout?",
+        "What migration, integration and support requirements shaped the decision?"
+      ],
+      "limitations": "The announcement confirms the stated adoption plan. It does not establish rollout completion, commercial terms or effects on booking performance."
+    },
+    {
+      "id": "siteminder-commerce",
+      "source_id": "siteminder-commerce",
+      "title": "SiteMinder unveils Dynamic Commerce Engine",
+      "company_ids": [
+        "siteminder"
+      ],
+      "theme_ids": [
+        "ai",
+        "distribution",
+        "revenue"
+      ],
+      "summary": "SiteMinder introduced plans for an engine to recommend pricing and distribution changes. The release says a hotel user would approve each recommendation before execution.",
+      "interpretation": "Linking distribution fixes to pricing decisions could give hotel commercial teams a reason to consolidate those workflows.",
+      "implication": "Channel data quality and approval controls could become product differentiators if the engine executes reliably across connected systems.",
+      "questions": [
+        "Which rate, inventory and channel actions can the engine execute?",
+        "How are false positives and incorrect changes detected and reversed?"
+      ],
+      "limitations": "The release describes a forthcoming rollout at publication. General availability and realized impact were not established by this source."
+    },
+    {
+      "id": "mews-siteminder",
+      "source_id": "mews-siteminder",
+      "title": "Mews and SiteMinder announce distribution partnership",
+      "company_ids": [
+        "mews",
+        "siteminder"
+      ],
+      "theme_ids": [
+        "distribution",
+        "partnerships"
+      ],
+      "summary": "The companies announced plans to embed SiteMinder distribution inside the Mews operating system so hotels can manage rates, availability and inventory within Mews.",
+      "interpretation": "The partnership shows how a property operating system can add channel coverage through an embedded specialist.",
+      "implication": "Distribution vendors could reach hotels through platform partnerships. The product experience will depend on integration depth and who handles support.",
+      "questions": [
+        "Which channels and regions are available at rollout?",
+        "Who owns onboarding, billing and support when channel synchronization fails?"
+      ],
+      "limitations": "The release describes an announced integration and planned migrations. It does not establish completion or disclose detailed partner economics."
+    }
+  ],
+  "themes": {
+    "ai": "AI and automation",
+    "distribution": "Hotel distribution",
+    "payments": "Payments",
+    "guest": "Guest experience",
+    "retailing": "Retailing",
+    "revenue": "Revenue management",
+    "partnerships": "Partnerships"
+  }
+}

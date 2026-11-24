@@ -1,0 +1,63 @@
+/* Keep the brand bar and native navigation controls in the same top band. */
+.hgi-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.75rem;
+  z-index: 999992;
+  padding: 0 3.5rem 0 3.75rem;
+  display: flex;
+  align-items: center;
+  gap: .85rem;
+  background: #17324d;
+  color: white;
+  pointer-events: none;
+  border-bottom: 3px solid #0d9488;
+  line-height: 1.2;
+}
+.hgi-header strong { font-size: 1.3rem; font-weight: 750; letter-spacing: -.025em; }
+.hgi-descriptor { color: #e3f4fb; font-size: .87rem; }
+.hgi-page-context {
+  border-left: 1px solid #8eabbc;
+  padding-left: .85rem;
+  font-size: .86rem;
+}
+[data-testid="stHeader"] { z-index: 999993; background: transparent; }
+[data-testid="stHeader"] button { color: white; }
+[data-testid="stSidebar"] {
+  top: 3.75rem;
+  max-height: calc(100dvh - 3.75rem);
+  border-right: 1px solid #dce7ef;
+}
+[data-testid="stSidebarNavLink"][aria-current="page"],
+[data-testid="stSidebarNavLink"]:has([aria-current="page"]) {
+  background: #e3f4fb;
+  color: #17324d;
+}
+[data-testid="stSidebarNavLink"] { border-radius: .55rem; }
+[class*="st-key-hgi-card-"] {
+  background: #fff;
+  box-shadow: 0 2px 8px #17324d0c;
+}
+[data-testid="stMetric"] {
+  background: #fff;
+  box-shadow: 0 2px 8px #17324d0c;
+}
+@media (min-width: 641px) and (max-width: 1100px) {
+  .st-key-hgi-executive-metrics [data-testid="stHorizontalBlock"] { flex-wrap: wrap; }
+  .st-key-hgi-executive-metrics [data-testid="stColumn"] { flex: 1 1 45%; }
+}
+@media (max-width: 760px) {
+  .hgi-page-context { display: none; }
+}
+@media (max-width: 460px) {
+  .hgi-header { padding-right: .75rem; gap: .65rem; }
+  .hgi-header strong { font-size: 1.15rem; }
+  .hgi-descriptor { font-size: .75rem; max-width: 11rem; }
+}
+
+.st-key-hgi-card-executive-demo-entry {
+  background: #f0f9f8;
+  border-left: 4px solid #0d9488;
+}
