@@ -17,7 +17,7 @@ HospitIQ is an independent strategy and analytics project for investigating wher
 | Competitive Benchmarking | Compare documented product capabilities, rollout status, and evidence gaps. |
 | Product Growth Intelligence | Prioritize discovery opportunities using segment fit, workflow relevance, commercial value, and feasibility. |
 | Financial Scenario Simulator | Compare three-year cash outcomes and test which assumptions drive them. |
-| Strategy Advisor | Build a local decision agenda with supporting evidence, diligence steps, and optional saved scenario results. |
+| Strategy Advisor | Get conditional recommendations grounded in reviewed evidence, management criteria and transferred scenario results. |
 | Harborlight Case Study | Follow a fictional embedded-payments decision from initial evidence to a proposed bounded pilot. |
 
 <details>
@@ -47,9 +47,18 @@ HospitIQ is an independent strategy and analytics project for investigating wher
 <details>
 <summary>Strategy Advisor</summary>
 
-![Strategy Advisor showing evidence requirements before investing](docs/screenshots/strategy-advisor.png)
+![Strategy Advisor recommending a controlled pilot under a separately approved cap](docs/screenshots/strategy-advisor.png)
 
 </details>
+
+### How the Strategy Advisor reaches a decision
+
+The Advisor handles six questions spanning growth discovery, market developments, competitive differentiation, cross-sell risk, strategic trade-offs and investment diligence. It can prioritize a discovery candidate, propose further investigation or identify where the available evidence is insufficient for a commitment. It compares strategic alternatives qualitatively and evaluates one modeled investment at a time.
+
+To screen an investment, open **Executive brief** in the Financial Scenario Simulator and select **Open results in Strategy Advisor**. Set management’s upfront investment cap, downside tolerance and target Base payback, then confirm the status of customer and implementation evidence. The Advisor checks the matching Conservative, Base and Ambitious results against those limits. It can recommend a controlled pilot, redesign or deferral and explains the relevant gates, risks, next steps and conditions for revisiting the decision.
+
+The public Advisor uses local rules and curated research in Evidence-Based Mode. Management supplies the limits and confirms qualification. Scenario inputs are illustrative, research coverage is bounded, and gaps in either can limit the recommendation. See the [decision policy](PHASE8_DECISION_POLICY.md) for the checks and their order.
+
 <details>
 <summary>Harborlight Case Study</summary>
 

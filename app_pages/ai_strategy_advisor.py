@@ -21,16 +21,19 @@ from strategy_models.advisor import (
 )
 from strategy_models.advisor_report import executive_html
 from strategy_models.benchmark import eligible_companies
+from strategy_models.decision_policy import Criteria, evaluate_decision
 from strategy_models.growth_research import SEGMENTS
 from ui.advisor import (
+    decision_details,
+    decision_view,
     evidence_limitations,
     executive_agenda,
-    findings_view,
     local_financial_view,
+    management_criteria,
 )
 
 st.title("Strategy Advisor", anchor=False)
-st.markdown("Build a source-linked decision agenda from market, competitive, growth, and financial evidence.")
+st.markdown("Choose a question and the companies you want to assess. The Advisor explains what to do next and what evidence could change that advice.")
 
 try:
     catalog = load_catalog()
@@ -45,7 +48,10 @@ if not companies:
 
 enabled = trial_enabled()
 left, right = st.columns(2)
-question = left.selectbox("Decision question", tuple(QUESTIONS), format_func=QUESTIONS.__getitem__, key="advisor_question")
+question = left.selectbox(
+    "Decision question", tuple(QUESTIONS), format_func=QUESTIONS.__getitem__, key="advisor_question",
+    help="Use the investment question to screen a modeled opportunity against management’s limits.",
+)
 mode = right.radio(
     "Advisor mode", ["Evidence-Based Mode", "NVIDIA-assisted"] if enabled else ["Evidence-Based Mode"],
     horizontal=True, key="advisor_mode"
@@ -53,6 +59,8 @@ mode = right.radio(
 chosen = st.multiselect(
     "Companies", companies, default=None if "advisor_companies" in st.session_state else companies[:2], max_selections=4,
     format_func=lambda key: catalog.companies[key].name, key="advisor_companies",
+    help="Select at least one company. Differentiation requires a documented comparison between two or more.",
+
 )
 left, right = st.columns(2)
 segment = left.selectbox(
@@ -60,8 +68,9 @@ segment = left.selectbox(
     key="advisor_segment",
 )
 theme = right.selectbox(
-    "Market announcement theme", (None, *catalog.themes),
+    "Market announcement theme (optional)", (None, *catalog.themes),
     format_func=lambda key: catalog.themes[key] if key else "All verified themes", key="advisor_theme",
+    help="Filter market announcements by theme. Other analysis uses the selected vendors and customer segment.",
 )
 if not chosen:
     st.info("Select at least one company to assemble a brief.")
@@ -73,17 +82,26 @@ if not isinstance(context, GrowthContext) or context.company_id not in chosen or
 snapshot = matching_snapshot(catalog, st.session_state.get(FINANCIAL_BRIEF_KEY), tuple(chosen), segment)
 case_focus = snapshot.product_id if snapshot and snapshot.fictional_label else None
 # A real saved opportunity can focus a local evidence agenda. It stays out of external requests.
-local_focus = snapshot.product_id if snapshot and mode == "Evidence-Based Mode" and question == "investment" else None
+local_focus = snapshot.product_id if snapshot and question == "investment" else None
 brief = build_public_brief(catalog, question, tuple(chosen), segment, theme, context, case_focus or local_focus)
 if context:
-    st.caption("Using the Product Growth anchor, product filter and scoring weights for the selected segment.")
+    st.caption("Using the product selection and scoring weights carried over from Product Growth.")
 elif case_focus and question == "investment":
-    st.caption("The Harborlight investment discussion focuses on payments. Vendor products provide industry evidence.")
+    st.caption("Harborlight is fictional. Vendor research provides context for the payments decision.")
 if question in {"growth", "cross-sell"} and len(chosen) > 1:
     st.caption(
-        "This view compares opportunities across selected vendors. Product Growth ranks one vendor at a time. "
-        "Select that vendor alone or open the Advisor from Product Growth to match the decision scope."
+        "The Advisor compares the selected vendors. To match a single-vendor Product Growth view, select that vendor here."
     )
+
+recommendation = st.container()
+if question == "investment":
+    criteria = management_criteria(snapshot, brief.opportunity.title if brief.opportunity else "Unspecified opportunity")
+else:
+    criteria = Criteria(objective="Discovery")
+decision = evaluate_decision(brief, snapshot, criteria)
+with recommendation:
+    decision_view(decision)
+decision_details(decision)
 
 if not brief.priority_order():
     limitation = {
@@ -92,12 +110,14 @@ if not brief.priority_order():
         "market": "No verified developments match these filters. Change the companies or broaden the market theme.",
     }.get(question, "The selected products and companies do not provide enough verified evidence for this decision.")
     st.info(limitation)
-    local_financial_view(catalog, snapshot)
+    if snapshot or question != "investment":
+        local_financial_view(catalog, snapshot)
     st.stop()
 
 ranking = brief.priority_order()
 method = "Evidence-Based Mode · Local ranking rules"
-if enabled and mode == "NVIDIA-assisted":
+if enabled and mode == "NVIDIA-assisted" and (not local_focus or case_focus):
+    st.caption("Optional ordering of public diligence findings. The local recommendation and gates remain authoritative.")
     st.caption(
         "NVIDIA receives the selected research filters and curated public findings. "
         "Financial assumptions, simulator results, portfolio uploads, and customer information stay local."
@@ -122,15 +142,19 @@ if enabled and mode == "NVIDIA-assisted":
     response = st.session_state.get("advisor_nvidia_result")
     if response and response[0] == brief:
         ranking = response[1]
-        method = "NVIDIA-assisted · Nemotron 3 Ultra 550B ranked public actions. The lead reflects the selected decision."
+        method = "NVIDIA-assisted · Nemotron 3 Ultra 550B ranked public diligence findings."
     else:
         st.caption("The local agenda is available whenever NVIDIA prioritization has not run for this selection.")
 
-executive_agenda(brief, ranking, method)
-findings_view(brief)
-local_financial_view(catalog, snapshot)
+elif enabled and mode == "NVIDIA-assisted":
+    st.caption("This opportunity uses the local simulator handoff. Its decision and supporting agenda stay local.")
+
+with st.expander("Detailed research and sources"):
+    executive_agenda(brief, ranking, method)
+if snapshot or question != "investment":
+    local_financial_view(catalog, snapshot)
 evidence_limitations()
 st.download_button(
-    "Download executive strategy brief", executive_html(catalog, brief, ranking, method, snapshot),
+    "Download executive strategy brief", executive_html(catalog, brief, ranking, method, snapshot, decision),
     "hospitiq-executive-strategy-brief.html", "text/html", icon=":material/download:", on_click="ignore",
 )

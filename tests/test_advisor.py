@@ -122,6 +122,14 @@ class AdvisorPageTests(unittest.TestCase):
         self.assertTrue(any("local Evidence-Based" in item.value for item in app.warning))
         self.assertEqual(app.get("download_button")[0].proto.label, "Download executive strategy brief")
 
+    def test_investment_question_explains_handoff_before_showing_limits(self) -> None:
+        app = self.open_advisor()
+        app.selectbox(key="advisor_question").select("investment").run()
+        self.assertFalse(app.exception)
+        self.assertFalse(app.number_input)
+        self.assertTrue(any("Executive brief → Open results in Strategy Advisor" in item.value for item in app.markdown))
+        self.assertIn("Open Financial Scenario Simulator", [link.proto.label for link in app.get("page_link")])
+
     def test_financial_handoff_remains_local_and_preserves_modeled_totals(self) -> None:
         app = AppTest.from_file(APP, default_timeout=10).run().switch_page(
             "app_pages/financial_scenario_simulator.py"
@@ -132,6 +140,7 @@ class AdvisorPageTests(unittest.TestCase):
         app.button(key="financial_share_advisor").click().run()
         self.assertFalse(app.exception)
         self.assertEqual(app.title[0].value, "Strategy Advisor")
+        self.assertEqual(app.selectbox(key="advisor_question").value, "investment")
         self.assertEqual(app.multiselect(key="advisor_companies").value, ["siteminder"])
         self.assertEqual(app.selectbox(key="advisor_segment").value, "resort")
         snapshot = app.session_state[FINANCIAL_BRIEF_KEY]

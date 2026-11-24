@@ -5,7 +5,7 @@ from dataclasses import dataclass
 from data_services.customer_portfolio import Customer
 from data_services.market_catalog import MarketCatalog, Source
 from strategy_models.benchmark import build_benchmark
-from strategy_models.financial import Projection
+from strategy_models.financial import Projection, Sensitivity
 from strategy_models.growth_engine import (
     DEFAULT_WEIGHTS,
     Candidate,
@@ -52,6 +52,9 @@ class FinancialSnapshot:
     origin: str
     scenarios: tuple[tuple[str, Projection], ...]
     fictional_label: str | None = None
+    normalized_sensitivity: tuple[Sensitivity, ...] = ()
+    business_sensitivity: tuple[Sensitivity, ...] = ()
+    sensitivity_case: str | None = None
 
 
 @dataclass(frozen=True)
@@ -65,6 +68,7 @@ class Finding:
     sources: tuple[Source, ...]
     metric: str = "Validate what has shipped and obtain comparable operating evidence."
     assumption: str = ""
+    evidence_confidence: int | None = None
 
 
 @dataclass(frozen=True)
@@ -74,13 +78,16 @@ class PublicBrief:
     segment: str
     theme: str | None
     findings: tuple[Finding, ...]
+    opportunity: Finding | None = None
 
     def focus_section(self) -> str:
         return self.question
 
     def priority_order(self) -> tuple[str, ...]:
         eligible = tuple(item.id for item in self.findings if item.section == self.focus_section())
-        return eligible[:1] if self.question == "growth" else eligible[:3]
+        if self.question == "growth":
+            return eligible[:1]
+        return eligible if self.question == "market" else eligible[:3]
 
     def align_priorities(self, model_choices: tuple[str, ...]) -> tuple[str, ...]:
         local = self.priority_order()
@@ -100,9 +107,12 @@ def market_findings(
             f"{item.interpretation} {item.limitations}",
             item.questions[0], (catalog.sources[item.source_id],), item.implication,
         )
-        for item in catalog.filter_developments(
-            companies=set(company_ids), themes={theme} if theme else None, verified_only=True
-        )[:3]
+        for item in sorted(
+            catalog.filter_developments(
+                companies=set(company_ids), themes={theme} if theme else None, verified_only=True,
+            ),
+            key=lambda entry: entry.title.casefold(),
+        )
     ]
 
 
@@ -149,11 +159,10 @@ def growth_findings(
     return [
         Finding(
             f"growth-{item.product.id}", "growth", item.product.name, item.product.description,
-            f"{segment.label} · Attractiveness {item.score:.0f}/100. "
-            f"{item.rationale} {item.benefit} "
-            "Customer ownership, eligibility and deployment fit require validation.",
-            f"{item.execution} Confirm buyer need, ownership and eligibility before outreach.",
+            f"{segment.label} · Attractiveness {item.score:.0f}/100. {item.rationale}",
+            item.execution,
             item.sources, pilot_metric(PRODUCT_CLASS[item.product.id]),
+            evidence_confidence=item.factors["evidence"],
         )
         for item in ranked[:4]
     ]
@@ -270,7 +279,7 @@ def build_public_brief(
         findings.extend(investment_findings(growth))
         findings.extend(risk_findings(growth))
     findings.extend(tradeoff_findings(catalog, company_ids))
-    return PublicBrief(question, companies, SEGMENTS[segment].label, catalog.themes.get(theme) if theme else None, tuple(findings))
+    return PublicBrief(question, companies, SEGMENTS[segment].label, catalog.themes.get(theme) if theme else None, tuple(findings), growth)
 
 
 def matching_snapshot(

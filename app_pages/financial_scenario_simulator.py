@@ -124,11 +124,14 @@ with sensitivity_tab:
 
 with brief_tab:
     st.header("Generate executive brief", anchor=False)
+    if results:
+        st.caption("Open the results in Strategy Advisor to check the modeled opportunity against management’s limits.")
     if results and st.button("Open results in Strategy Advisor", key="financial_share_advisor"):
         st.session_state[FINANCIAL_BRIEF_KEY] = FinancialSnapshot(
             opportunity.product_id, opportunity.segment, currency, origin, tuple(results.items()),
-            opportunity.fictional_label,
+            opportunity.fictional_label, sensitivities, uncertainty, selected_case,
         )
+        st.session_state["advisor_question"] = "investment"
         st.session_state["advisor_companies"] = [products[opportunity.product_id].company_id]
         if opportunity.segment is not None:
             st.session_state["advisor_segment"] = opportunity.segment

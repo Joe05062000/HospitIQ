@@ -150,6 +150,7 @@ with delivery:
             st.session_state[FINANCIAL_BRIEF_KEY] = FinancialSnapshot(
                 opportunity.product_id, opportunity.segment, CURRENCY, ORIGIN,
                 tuple(case.results.items()), opportunity.fictional_label,
+                case.sensitivities, case.uncertainty, "Base",
             )
             st.session_state["advisor_segment"] = opportunity.segment
         st.session_state.pop(GROWTH_BRIEF_KEY, None)
